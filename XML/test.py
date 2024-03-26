@@ -1,13 +1,18 @@
+from transformers import AutoImageProcessor, ViTForImageClassification
 import torch
-#from pytorch_pretrained_gans import make_gan
-from pytorch_pretrained_gans_ import make_gan
-import matplotlib.pyplot as plt
-import heapq
-import numpy as np
+from datasets import load_dataset
 
-G = make_gan(gan_type='biggan')  # -> nn.Module
-y = G.sample_class(batch_size=1)  # -> torch.Size([1, 1000])
-z = G.sample_latent(batch_size=1)  # -> torch.Size([1, 128])
-x = G(z=z, y=y)  # -> torch.Size([1, 3, 256, 256])
-x_img = x[0].detach().cpu().numpy().transpose(1, 2, 0)
-plt.imshow(x_img)
+dataset = load_dataset("huggingface/cats-image")
+image = dataset["test"]["image"][0]
+
+image_processor = AutoImageProcessor.from_pretrained("google/vit-base-patch16-224")
+model = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224")
+
+inputs = image_processor(image, return_tensors="pt")
+
+with torch.no_grad():
+    logits = model(**inputs).logits
+
+# model predicts one of the 1000 ImageNet classes
+predicted_label = logits.argmax(-1).item()
+print(model.config.id2label[predicted_label])
