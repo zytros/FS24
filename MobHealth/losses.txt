@@ -1,0 +1,3 @@
+Score for ConvNet: 20.19189800198913
+Score for ConvNet: 19.65249235621196
+Score for ConvNet 1/2 s kernels: 16.597091507823286
