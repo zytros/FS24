@@ -251,8 +251,10 @@ train_loader.dataset[0][0].shape
 
 conv_net = ConvNet()
 #TODO: increase num_epochs
-train_model(conv_net, train_loader, num_epochs=10)
+train_model(conv_net, train_loader, num_epochs=100000)
 
 pred = predict(conv_net, D_test.astype(np.float32)[0])
 
-better_score(pred, yD_test, 'ConvNet 1/2 s kernels 10 epochs')
+better_score(pred, yD_test, 'ConvNet 1/2 s kernels 100000 epochs')
+
+torch.save(conv_net.state_dict(), 'conv_net.pth')
