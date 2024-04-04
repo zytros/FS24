@@ -72,10 +72,10 @@ def split_data(X, y, test_size=0.2, random_state=42):
 
 def create_dataloaders_from_arrays(X_train, y_train, X_test, y_test, batch_size=16):
     # Convert arrays to PyTorch tensors
-    X_train_torch = torch.tensor(X_train.astype(np.float64))
-    y_train_torch = torch.tensor(y_train.astype(np.float64))
-    X_test_torch = torch.tensor(X_test.astype(np.float64))
-    y_test_torch = torch.tensor(y_test.astype(np.float64))
+    X_train_torch = torch.tensor(X_train.astype(np.float32))
+    y_train_torch = torch.tensor(y_train.astype(np.float32))
+    X_test_torch = torch.tensor(X_test.astype(np.float32))
+    y_test_torch = torch.tensor(y_test.astype(np.float32))
 
     # Create TensorDatasets
     train_dataset = TensorDataset(X_train_torch, y_train_torch)
@@ -253,6 +253,6 @@ conv_net = ConvNet()
 #TODO: increase num_epochs
 train_model(conv_net, train_loader, num_epochs=10)
 
-pred = predict(conv_net, D_test.astype(np.float64)[0])
+pred = predict(conv_net, D_test.astype(np.float32)[0])
 
 better_score(pred, yD_test, 'ConvNet 1/2 s kernels 10 epochs')
