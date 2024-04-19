@@ -435,3 +435,20 @@ def deit_base_patch16_224(pretrained=False, **kwargs):
         )
         model.load_state_dict(checkpoint["model"])
     return model
+
+'''def swin_tiny_patch4_window7_224(pretrained=False, **kwargs):
+    model = VisionTransformer(
+        img_size=224, patch_size=4, embed_dim=96, depth=12, num_heads=6, mlp_ratio=4, qkv_bias=True, **kwargs)
+    (
+        image_size=224, patch_size=4, num_channels=3, embed_dim=96, depths=[2, 2, 6, 2], num_heads=[3, 6, 12, 24], window_size=7, mlp_ratio=4.0, qkv_bias=True,
+        hidden_dropout_prob=0.0, attention_probs_dropout_prob=0.0, drop_path_rate=0.1, hidden_act="gelu", use_absolute_embeddings=False, initializer_range=0.02,
+        layer_norm_eps=1e-5, encoder_stride=32, out_features=None, out_indices=None,
+    )
+    model.default_cfg = _cfg()
+    if pretrained:
+        checkpoint = torch.hub.load_state_dict_from_url(
+            url="https://dl.fbaipublicfiles.com/deit/swin_tiny_patch4_window7_224.pth",
+            map_location="cpu", check_hash=True
+        )
+        model.load_state_dict(checkpoint["model"])
+    return model'''

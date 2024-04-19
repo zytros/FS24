@@ -172,7 +172,7 @@ class WindowAttention(nn.Module):
         return flops
 
 
-class SwinTransformerBlock(nn.Module):
+class SwinTransformerBlock(nn.Module): # SwinLayer
     r""" Swin Transformer Block.
 
     Args:
@@ -361,7 +361,7 @@ class PatchMerging(nn.Module):
         return flops
 
 
-class BasicLayer(nn.Module):
+class BasicLayer(nn.Module): # SwinStage
     """ A basic Swin Transformer layer for one stage.
 
     Args:
