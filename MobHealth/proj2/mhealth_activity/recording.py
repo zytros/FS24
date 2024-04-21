@@ -40,13 +40,14 @@ class Recording:
             contents and properties of a `Recording` object in a human-readable format.
     """
 
-    def __init__(self, path: str):
+    def __init__(self, path: str, id=-1):
         self.filename = os.path.basename(path)
 
         with open(path, 'rb') as f:
             data_dict = pickle.load(f)
         self.labels = data_dict["labels"]
         self.data = {key: Trace.from_dict(trace_dict) for key, trace_dict in data_dict["data"].items()}  
+        self.id = id
   
     def plot(self, keys: Union[str, List[str], List[List[str]]], ylabels: Optional[Union[str, List[str]]] = None, labels: Optional[Union[str, List[str], List[List[str]]]] = None, title: Optional[str] = None, start_s: float = 0, end_s: float = float('inf')):
 

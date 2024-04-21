@@ -58,7 +58,7 @@ class Trace:
         self._update_values: List[float] = None
         self._update_idxs: List[int] = None
         self._max_update_gap: float = None
-        self._int_timestamps: np.ndarray = None        
+        self._int_timestamps: np.ndarray = None
 
     def to_dict(self) -> Dict[str, any]:
         return {
